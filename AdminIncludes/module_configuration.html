@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-12">
+        {if isset($smarty.get.errmes) and !empty($smarty.get.errmes)}
+        <div class="alert alert-danger">
+            <p>{$smarty.get.errmes}</p>
+        </div>
+        {/if}
+        <div class="general-block-decorator">
+            <h2>{intl l="Default delivery time configuration"}</h2>
+            <div class="form-container">
+                {form type="deliverydate.configure" name="deliverydate.configure"}
+                <form action="{url path='/admin/module/deliverydate/set'}" method="post">
+                    {form_hidden_fields form=$form}
+
+                    {form_field form=$form field="minidelivery"}
+                        <label for="{$label_attr.for}">
+                            {$label} :
+                        </label>
+
+                        <input type="text" required pattern="\d+" name="{$name}" id="{$label_attr.for}" value="{$value}" class="form-control"/>
+                    {/form_field}
+
+                    {form_field form=$form field="maxidelivery"}
+                        <label for="{$label_attr.for}">
+                            {$label} :
+                        </label>
+
+                        <input type="text" required pattern="\d+" name="{$name}" id="{$label_attr.for}" value="{$value}" class="form-control"/>
+                    {/form_field}
+
+                    {form_field form=$form field="minirestock"}
+                        <label for="{$label_attr.for}">
+                            {$label} :
+                        </label>
+
+                        <input type="text" required pattern="\d+" name="{$name}" id="{$label_attr.for}" value="{$value}" class="form-control"/>
+                    {/form_field}
+
+                    {form_field form=$form field="maxirestock"}
+                        <label for="{$label_attr.for}">
+                            {$label} :
+                        </label>
+
+                        <input type="text" required pattern="\d+" name="{$name}" id="{$label_attr.for}" value="{$value}" class="form-control"/>
+                    {/form_field}
+                    <br/>
+                    <button type="submit" name="save_mode" value="stay" class="form-submit-button btn btn-sm btn-default btn-success" title="{intl l="Save"}">{intl l="Save"} <span class="glyphicon glyphicon-ok"></span></button>
+                </form>
+                {/form}
+            </div>
+        </div>
+    </div>
+</div>

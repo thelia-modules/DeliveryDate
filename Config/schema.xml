@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" name="thelia" namespace="DeliveryDate\Model">
+    <table name="product_date">
+        <column name="id" primaryKey="true" type="INTEGER" required="true" />
+        <column name="delivery_time_min" type="INTEGER" />
+        <column name="delivery_time_max" type="INTEGER" />
+        <column name="restock_time_min" type="INTEGER" />
+        <column name="restock_time_max" type="INTEGER" />
+        <foreign-key foreignTable="product_sale_elements" name="fk_product_date_product_sale_elements_id" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference foreign="id" local="id" />
+        </foreign-key>
+    </table>
+    <external-schema filename="local/config/schema.xml" referenceOnly="true" />
+</database>

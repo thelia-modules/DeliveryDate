@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {intl l="Delivery time configuration"}
+    </div>
+
+    <div class="panel-body">
+        {form name="deliverydate.product"}
+        <form action="{url path='/admin/module/deliverydate/setproduct'}/{$product_id}" method="post">
+            {form_hidden_fields form=$form}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            {intl l="Attribute name"}
+                        </th>
+                        <th>
+                            {intl l="Minimum delivery time (days)"}
+                        </th>
+                        <th>
+                            {intl l="Maximum delivery time (days)"}
+                        </th>
+                        <th>
+                            {intl l="Minimum restock time (days)"}
+                        </th>
+                        <th>
+                            {intl l="Maximum restock time (days)"}
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {loop type="product_sale_elements" name="get_product_sale_element_delivery_time" product=$product_id}
+
+                    {assign var="title" value=""}
+                    {loop type="attribute_combination" name="get.product.sale.element.attributes" product_sale_elements=$ID}
+                        {assign var="title" value=$ATTRIBUTE_TITLE}
+                    {/loop}
+
+                    <tr>
+                        {form_field form=$form field=$ID|cat:"minidelivery"}
+                        <td>
+                            <label for="{$label_attr.for}">
+                                {$title} :
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" required pattern="\d+" name="{$name}" id="{$ID|cat:$label_attr.for}" value="{$value}" class="form-control"/>
+                        </td>
+                        {/form_field}
+
+                        {form_field form=$form field=$ID|cat:"maxidelivery"}
+                        <td>
+                            <input type="text" required pattern="\d+" name="{$name}" id="{$ID|cat:$label_attr.for}" value="{$value}" class="form-control"/>
+                        </td>
+                        {/form_field}
+
+                        {form_field form=$form field=$ID|cat:"minirestock"}
+                        <td>
+                            <input type="text" required pattern="\d+" name="{$name}" id="{$ID|cat:$label_attr.for}" value="{$value}" class="form-control"/>
+                        </td>
+                        {/form_field}
+
+                        {form_field form=$form field=$ID|cat:"maxirestock"}
+                        <td>
+                            <input type="text" required pattern="\d+" name="{$name}" id="{$ID|cat:$label_attr.for}" value="{$value}" class="form-control"/>
+                        </td>
+                        {/form_field}
+                    {/loop}
+                    </tr>
+                </tbody>
+            </table>
+
+            <button type="submit" name="save_mode" value="stay" class="form-submit-button btn btn-sm btn-default btn-success" title="{intl l="Save"}">{intl l="Save"} <span class="glyphicon glyphicon-ok"></span></button>
+
+        </form>
+        {/form}
+    </div>
+
+</div>
