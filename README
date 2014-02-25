@@ -55,6 +55,10 @@ Dans script.js, un appel ajax est fait sur l'adresse contenu dans l'attribut dat
 quand une déclinaison de produit est selectionnée.
 La réponse est placée dans cette même balise.
 
+De plus, vous pouvez ajouter ces valeurs dans vos mails en utilisant la boucle delivery.date qui fourni trois valeurs:
+{$QUANTITY}, {$DATE_MIN} et {$DATE_MAX}.
+Un exemple d'utilisation de cette boucle est présent dans <dossier du module>/templates/frontOffice/default/delivery-date.html
+
 en_US
 -----
 
@@ -79,3 +83,7 @@ In product.html, a <div> tag is added with two attributes:
 The tag is placed in the product's price frame.
 In script.js, an ajax call is done on the address of the attribute data-href of the <div> tag previously added when a new product attribute is selected.
 The response is placed in the tag.
+
+Moreover, you can add those values in your mails, using delivery.date loop that give three values:
+{$QUANTITY}, {$DATE_MIN} et {$DATE_MAX}.
+A usage example of the loop is available in <path to the module>/templates/frontOffice/default/delivery-date.html
