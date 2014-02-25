@@ -284,7 +284,7 @@
                 }
 
 
-                // ADDED FOR Delivery Date
+                // Product delivery date
                 var date_container = $("#delivery-date");
                     $.ajax({
                         url: date_container.attr('data-href')+"/"+$(this).find(":selected").attr('value')

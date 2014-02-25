@@ -29,6 +29,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Thelia\Core\Translation\Translator;
 use Thelia\Form\BaseForm;
 
+/**
+ * Class ConfigureForm
+ * @package DeliveryDate\Form
+ * @author Thelia <info@thelia.net>
+ */
 class ConfigureForm extends BaseForm {
     /**
      *

@@ -27,6 +27,10 @@ class ProductDate extends BaseProductDate
         return $lang->getDateFormat();
     }
 
+    /**
+     * @param Lang $lang
+     * @return bool|string
+     */
     public function computeDeliveryTimeMin(Lang $lang) {
 
         return date(
@@ -35,6 +39,10 @@ class ProductDate extends BaseProductDate
         );
     }
 
+    /**
+     * @param Lang $lang
+     * @return bool|string
+     */
     public function computeDeliveryTimeMax(Lang $lang) {
         return date(
             $this->getFormat($lang),
@@ -42,6 +50,10 @@ class ProductDate extends BaseProductDate
         );
     }
 
+    /**
+     * @param Lang $lang
+     * @return bool|string
+     */
     public function computeRestockTimeMin(Lang $lang) {
 
         return date(
@@ -50,6 +62,10 @@ class ProductDate extends BaseProductDate
         );
     }
 
+    /**
+     * @param Lang $lang
+     * @return bool|string
+     */
     public function computeRestockTimeMax(Lang $lang) {
         return date(
             $this->getFormat($lang),
@@ -57,6 +73,9 @@ class ProductDate extends BaseProductDate
         );
     }
 
+    /**
+     * @return array|mixed|\Thelia\Model\ProductSaleElements
+     */
     public function getParent() {
         $query = ProductSaleElementsQuery::create()
             ->findPk($this->getId());

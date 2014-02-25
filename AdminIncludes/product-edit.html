@@ -43,6 +43,9 @@
                                 {loop name="product.sales.elements.combinations" type="attribute_combination" product_sale_elements=$ID backend_context="1"}
                                     {if $LOOP_COUNT > 1} - {/if}{$ATTRIBUTE_TITLE}
                                 {/loop}
+                                {elseloop rel="product.sales.elements.combinations"}
+                                    {$TITLE}
+                                {/elseloop}
                             </label>
                         </td>
                         <td>

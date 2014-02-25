@@ -12,10 +12,4 @@
         <form name="deliverydate.configure" class="DeliveryDate\Form\ConfigureForm" />
         <form name="deliverydate.product" class="DeliveryDate\Form\ConfigureProductForm" />
     </forms>
-
-    <!--
-    <services>
-
-    </services>
-    -->
 </config>
