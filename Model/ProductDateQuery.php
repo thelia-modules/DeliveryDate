@@ -3,11 +3,9 @@
 namespace DeliveryDate\Model;
 
 use DeliveryDate\Model\Base\ProductDateQuery as BaseProductDateQuery;
-use DeliveryDate\Model\Map\ProductDateTableMap;
-use DeliveryDate\Model\ProductDate as ChildProductDate;
 use Propel\Runtime\ActiveQuery\Criteria;
-use Propel\Runtime\Connection\ConnectionInterface;
-use Propel\Runtime\Propel;
+use Thelia\Model\Product;
+use Thelia\Model\ProductSaleElements;
 
 
 /**
@@ -22,6 +20,35 @@ use Propel\Runtime\Propel;
  */
 class ProductDateQuery extends BaseProductDateQuery
 {
+    /**
+     * @param ProductSaleElements $sale_element
+     * @return array|ProductDate|null
+     */
+    public function getProductDate(ProductSaleElements $sale_element) {
+        $ret = $this->findPk($sale_element->getId());
+
+        if($ret->getId() === 0) {
+            $ret = new ProductDate();
+            $ret->setId($sale_element->getId());
+        }
+
+        return $ret;
+    }
+
+    /**
+     * @param Product $product
+     * @return array
+     */
+    public function getProductDates(Product $product) {
+        $ret = array();
+
+        foreach($product->getProductSaleElementss() as $sale_element) {
+            $ret[]  = $this->getProductDate($sale_element);
+        }
+
+        return $ret;
+    }
+
     /**
      * @param null $id
      * @param null $comparison
