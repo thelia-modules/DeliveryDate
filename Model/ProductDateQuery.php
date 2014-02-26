@@ -77,6 +77,7 @@ class ProductDateQuery extends BaseProductDateQuery
         if($query === null) {
             $query = $this->getDefault();
         }
+        $query->setRealId($key);
 
         return $query;
     }

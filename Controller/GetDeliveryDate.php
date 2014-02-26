@@ -23,7 +23,11 @@
 
 
 namespace DeliveryDate\Controller;
+use DeliveryDate\Model\ProductDateQuery;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Thelia\Controller\Front\BaseFrontController;
+use Thelia\Core\Translation\Translator;
+use Thelia\Model\ProductSaleElementsQuery;
 
 
 /**
@@ -33,6 +37,21 @@ use Thelia\Controller\Front\BaseFrontController;
  */
 class GetDeliveryDate extends BaseFrontController {
     public function get($product_sale_element_id) {
-        return $this->render("delivery-date", array("ID"=>$product_sale_element_id));
+        $date = ProductDateQuery::create()
+            ->findPk($product_sale_element_id);
+
+        /** @var \Thelia\Core\HttpFoundation\Session\Session $session */
+        $session = $this->container->get('request')->getSession();
+        $lang = $session->getLang();
+
+        return JsonResponse::create(
+            array(
+                "date_min"=>$date->getDateMin($lang),
+                "date_max"=>$date->getDateMax($lang),
+                "quantity"=>ProductSaleElementsQuery::create()->findPk($product_sale_element_id)->getQuantity(),
+                "msg"=>Translator::getInstance()->trans("Order this product today and receive it between the"),
+                "msg_2"=>Translator::getInstance()->trans("and the")
+            )
+        );
     }
 } 

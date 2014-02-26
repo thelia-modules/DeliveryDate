@@ -65,8 +65,8 @@ class DeliveryTime extends BaseLoop implements PropelSearchLoopInterface {
                 $quantity = $parent->getQuantity();
             }
 
-            $loopResultRow->set('DATE_MIN',$quantity ? $product_date->computeDeliveryTimeMin($lang):$product_date->computeRestockTimeMin($lang));
-            $loopResultRow->set('DATE_MAX',$quantity ? $product_date->computeDeliveryTimeMax($lang):$product_date->computeRestockTimeMax($lang));
+            $loopResultRow->set('DATE_MIN',$product_date->getDateMin($lang));
+            $loopResultRow->set('DATE_MAX',$product_date->getDateMax($lang));
 
             $loopResultRow->set('QUANTITY', $quantity);
 

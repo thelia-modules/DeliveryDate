@@ -288,8 +288,8 @@
                 var date_container = $("#delivery-date");
                     $.ajax({
                         url: date_container.attr('data-href')+"/"+$(this).find(":selected").attr('value')
-                    }).done(function(response) {
-                        date_container.html(response);
+                    }).done(function(json) {
+                        date_container.html("<small>"+json['msg']+" "+json['date_min']+" "+json['msg_2']+" "+json['date_max']+"</small>");
                     });
 
                 // -----------------------
