@@ -40,7 +40,7 @@ Pour cela allez sur la page d'édition du produit, onglet Modules.
         2. \$DATE_MAX: date maximale formatée où le produit peut être reçu
         3. \$QUANTITY: Quantité en stock du produit
     - Utilisation:
-        ```{loop type="delivery.date" name="yourloopname"}
+        ```{loop type="delivery.date" name="yourloopname" productid=\$ID}
             <!-- your template -->
         {/loop}```
 
@@ -85,7 +85,7 @@ You can also specify other values for each product, by going to your product's p
         2. \$DATE_MAX: formated maximal date where the product may be received by the customer
         3. \$QUANTITY: stock quantity of the product
     - Usage:
-        ```{loop type="delivery.date" name="yourloopname"}
+        ```{loop type="delivery.date" name="yourloopname" productid=\$ID}
             <!-- your template -->
         {/loop}```
 
