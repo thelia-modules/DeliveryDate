@@ -31,45 +31,50 @@ class ProductDate extends BaseProductDate
      * @param $days
      * @param null|int $time
      */
-    protected function computeTime($days, $timestamp=null) {
-
-        if($timestamp === null) {
+    protected function computeTime($days, $timestamp=null)
+    {
+        if ($timestamp === null) {
             $timestamp = time();
         }
 
         return $timestamp + self::DAY_IN_SEC * $days;
     }
 
-    protected function getFormat(Lang $lang) {
+    protected function getFormat(Lang $lang)
+    {
         return $lang->getDateFormat();
     }
 
-    public function getDateMin(Lang $lang) {
+    public function getDateMin(Lang $lang)
+    {
         $ret = "";
-        if($this->getParent()->getQuantity()) {
+        if ($this->getParent()->getQuantity()) {
             $ret = $this->computeDeliveryTimeMin($lang);
         } else {
             $ret = $this->computeRestockTimeMin($lang);
         }
+
         return $ret;
     }
 
-    public function getDateMax(Lang $lang) {
+    public function getDateMax(Lang $lang)
+    {
         $ret = "";
-        if($this->getParent()->getQuantity()) {
+        if ($this->getParent()->getQuantity()) {
             $ret = $this->computeDeliveryTimeMax($lang);
         } else {
             $ret = $this->computeRestockTimeMax($lang);
         }
+
         return $ret;
     }
 
     /**
-     * @param Lang $lang
+     * @param  Lang        $lang
      * @return bool|string
      */
-    public function computeDeliveryTimeMin(Lang $lang) {
-
+    public function computeDeliveryTimeMin(Lang $lang)
+    {
         return date(
             $this->getFormat($lang),
             $this->computeTime($this->getDeliveryTimeMin())
@@ -77,10 +82,11 @@ class ProductDate extends BaseProductDate
     }
 
     /**
-     * @param Lang $lang
+     * @param  Lang        $lang
      * @return bool|string
      */
-    public function computeDeliveryTimeMax(Lang $lang) {
+    public function computeDeliveryTimeMax(Lang $lang)
+    {
         return date(
             $this->getFormat($lang),
             $this->computeTime($this->getDeliveryTimeMax())
@@ -88,11 +94,11 @@ class ProductDate extends BaseProductDate
     }
 
     /**
-     * @param Lang $lang
+     * @param  Lang        $lang
      * @return bool|string
      */
-    public function computeRestockTimeMin(Lang $lang) {
-
+    public function computeRestockTimeMin(Lang $lang)
+    {
         return date(
             $this->getFormat($lang),
             $this->computeTime($this->getRestockTimeMin())
@@ -100,10 +106,11 @@ class ProductDate extends BaseProductDate
     }
 
     /**
-     * @param Lang $lang
+     * @param  Lang        $lang
      * @return bool|string
      */
-    public function computeRestockTimeMax(Lang $lang) {
+    public function computeRestockTimeMax(Lang $lang)
+    {
         return date(
             $this->getFormat($lang),
             $this->computeTime($this->getRestockTimeMax())
@@ -113,7 +120,8 @@ class ProductDate extends BaseProductDate
     /**
      * @return array|mixed|\Thelia\Model\ProductSaleElements
      */
-    public function getParent() {
+    public function getParent()
+    {
         $query = ProductSaleElementsQuery::create()
             ->findPk($this->getRealId());
 

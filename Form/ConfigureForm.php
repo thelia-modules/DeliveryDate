@@ -23,7 +23,6 @@
 
 namespace DeliveryDate\Form;
 
-
 use DeliveryDate\Model\ProductDateQuery;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Thelia\Core\Translation\Translator;
@@ -34,7 +33,8 @@ use Thelia\Form\BaseForm;
  * @package DeliveryDate\Form
  * @author Thelia <info@thelia.net>
  */
-class ConfigureForm extends BaseForm {
+class ConfigureForm extends BaseForm
+{
     /**
      *
      * in this function you add all the fields you need for your Form.

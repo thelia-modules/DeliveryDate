@@ -21,20 +21,20 @@
 /*                                                                                   */
 /*************************************************************************************/
 
-
 namespace DeliveryDate\Controller;
 use DeliveryDate\Form\ConfigureForm;
 use DeliveryDate\Model\ProductDateQuery;
 use Thelia\Controller\Admin\BaseAdminController;
 
-
 /**
  * Class SetDefaultValues
- * @package DeliveryDate\Controller 
+ * @package DeliveryDate\Controller
  * @author Thelia <info@thelia.net>
  */
-class SetDefaultValues extends BaseAdminController{
-    public function set() {
+class SetDefaultValues extends BaseAdminController
+{
+    public function set()
+    {
         $errmes = "";
 
         try {
@@ -46,7 +46,7 @@ class SetDefaultValues extends BaseAdminController{
             $minirestock = $vform->get('minirestock')->getData();
             $maxirestock = $vform->get('maxirestock')->getData();
 
-            if(preg_match("#^\d+$#", $minidelivery) &&
+            if (preg_match("#^\d+$#", $minidelivery) &&
                 preg_match("#^\d+$#", $maxidelivery) &&
                 preg_match("#^\d+$#", $minirestock) &&
                 preg_match("#^\d+$#", $maxirestock))
@@ -69,4 +69,4 @@ class SetDefaultValues extends BaseAdminController{
             array ( 'module_code'=>"DeliveryDate",
                 '_controller' => 'Thelia\\Controller\\Admin\\ModuleController::configureAction'));
     }
-} 
+}

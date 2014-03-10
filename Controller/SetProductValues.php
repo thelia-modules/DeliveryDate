@@ -21,7 +21,6 @@
 /*                                                                                   */
 /*************************************************************************************/
 
-
 namespace DeliveryDate\Controller;
 use DeliveryDate\Form\ConfigureProductForm;
 use DeliveryDate\Model\ProductDateQuery;
@@ -30,14 +29,15 @@ use Thelia\Model\Base\ProductQuery;
 use Thelia\Tools\Redirect;
 use Thelia\Tools\URL;
 
-
 /**
  * Class SetProductValues
- * @package DeliveryDate\Controller 
+ * @package DeliveryDate\Controller
  * @author Thelia <info@thelia.net>
  */
-class SetProductValues extends BaseAdminController {
-    public function set($product_id) {
+class SetProductValues extends BaseAdminController
+{
+    public function set($product_id)
+    {
         $errmes="";
 
         try {
@@ -46,7 +46,7 @@ class SetProductValues extends BaseAdminController {
              */
             $product = ProductQuery::create()
                 ->findPk($product_id);
-            if($product === null) {
+            if ($product === null) {
                 throw new \Exception("This product doesn't exist");
             }
 
@@ -64,16 +64,16 @@ class SetProductValues extends BaseAdminController {
 
             $entries = array("minidelivery","maxidelivery","minirestock","maxirestock");
             /** @var \DeliveryDate\Model\ProductDate $product_date */
-            foreach($product_dates as $product_date) {
+            foreach ($product_dates as $product_date) {
                 $form_entries = array();
                 $cond = true;
 
-                foreach($entries as $entry) {
+                foreach ($entries as $entry) {
                     $form_entries[$entry] = ($tmp=$vform->get($product_date->getId().$entry)->getData());
                     $cond &= preg_match("#^\d+$#",$tmp);
                 }
 
-                if($cond) {
+                if ($cond) {
                     /*
                      * If everything is valid, save the entry ! ;)
                      */
@@ -87,7 +87,7 @@ class SetProductValues extends BaseAdminController {
                     throw new \Exception("Your values must be numbers.");
                 }
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $errmes = $e->getMessage();
         }
 
@@ -104,4 +104,4 @@ class SetProductValues extends BaseAdminController {
             )
         );
     }
-} 
+}

@@ -21,7 +21,6 @@
 /*                                                                                   */
 /*************************************************************************************/
 
-
 namespace DeliveryDate\Form;
 use DeliveryDate\Model\Base\ProductDateQuery;
 use Thelia\Form\BaseForm;
@@ -29,13 +28,13 @@ use Thelia\Model\ProductQuery;
 use Thelia\Core\Translation\Translator;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-
 /**
  * Class ConfigureProductForm
- * @package DeliveryDate\Form 
+ * @package DeliveryDate\Form
  * @author Thelia <info@thelia.net>
  */
-class ConfigureProductForm extends BaseForm {
+class ConfigureProductForm extends BaseForm
+{
     /**
      *
      * in this function you add all the fields you need for your Form.
@@ -60,15 +59,15 @@ class ConfigureProductForm extends BaseForm {
     {
         $request = $this->getRequest();
 
-        $product_id = $request->get("product_id");
+        $product_id = $request->query->get("product_id");
         $product = ProductQuery::create()
             ->findPk($product_id);
 
-        if($product === null) {
+        if ($product === null) {
             throw new \Exception("You must use give a GET parameter called product_id and put a valid value in.");
         }
 
-        foreach($product->getProductSaleElementss() as $sale_element) {
+        foreach ($product->getProductSaleElementss() as $sale_element) {
             $data = ProductDateQuery::create()
                 ->findPk($sale_element->getId());
 
@@ -110,4 +109,4 @@ class ConfigureProductForm extends BaseForm {
         return "configureproductform";
     }
 
-} 
+}

@@ -21,7 +21,6 @@
 /*                                                                                   */
 /*************************************************************************************/
 
-
 namespace DeliveryDate\Controller;
 use DeliveryDate\Model\ProductDateQuery;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -29,14 +28,15 @@ use Thelia\Controller\Front\BaseFrontController;
 use Thelia\Core\Translation\Translator;
 use Thelia\Model\ProductSaleElementsQuery;
 
-
 /**
  * Class GetDeliveryDate
- * @package DeliveryDate\Controller 
+ * @package DeliveryDate\Controller
  * @author Thelia <info@thelia.net>
  */
-class GetDeliveryDate extends BaseFrontController {
-    public function get($product_sale_element_id) {
+class GetDeliveryDate extends BaseFrontController
+{
+    public function get($product_sale_element_id)
+    {
         $date = ProductDateQuery::create()
             ->findPk($product_sale_element_id);
 
@@ -54,4 +54,4 @@ class GetDeliveryDate extends BaseFrontController {
             )
         );
     }
-} 
+}

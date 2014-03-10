@@ -21,7 +21,6 @@
 /*                                                                                   */
 /*************************************************************************************/
 
-
 namespace DeliveryDate\Loop;
 use DeliveryDate\Model\ProductDateQuery;
 use Thelia\Core\Template\Element\BaseLoop;
@@ -33,14 +32,13 @@ use Thelia\Core\Template\Loop\Argument\Argument;
 use Thelia\Core\Template\Loop\Argument\ArgumentCollection;
 use Thelia\Model\ProductSaleElementsQuery;
 
-
 /**
  * Class DeliveryTime
  * @package DeliveryDate\Loop
  * @author Thelia <info@thelia.net>
  */
-class DeliveryTime extends BaseLoop implements PropelSearchLoopInterface {
-
+class DeliveryTime extends BaseLoop implements PropelSearchLoopInterface
+{
     protected $stock = 0;
 
     /**
@@ -54,14 +52,14 @@ class DeliveryTime extends BaseLoop implements PropelSearchLoopInterface {
         $session = $this->container->get('request')->getSession();
         $lang = $session->getLang();
         /** @var \DeliveryDate\Model\ProductDate $product_date */
-        foreach($loopResult->getResultDataCollection() as $product_date) {
+        foreach ($loopResult->getResultDataCollection() as $product_date) {
             $loopResultRow = new LoopResultRow();
 
             $parent = ProductSaleElementsQuery::create()
                 ->findPk($this->getProductid());
 
             $quantity = 0;
-            if($parent !== null) {
+            if ($parent !== null) {
                 $quantity = $parent->getQuantity();
             }
 
