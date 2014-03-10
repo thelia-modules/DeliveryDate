@@ -35,6 +35,10 @@ class SetDefaultValues extends BaseAdminController
 {
     public function set()
     {
+        if (null !== $response = $this->checkAuth(array(AdminResources::MODULE), array('DeliveryDate'), AccessManager::UPDATE)) {
+            return $response;
+        }
+
         $errmes = "";
 
         try {

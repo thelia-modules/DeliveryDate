@@ -28,6 +28,8 @@ use Thelia\Controller\Admin\BaseAdminController;
 use Thelia\Model\Base\ProductQuery;
 use Thelia\Tools\Redirect;
 use Thelia\Tools\URL;
+use Thelia\Core\Security\Resource\AdminResources;
+use Thelia\Core\Security\AccessManager;
 
 /**
  * Class SetProductValues
@@ -38,6 +40,10 @@ class SetProductValues extends BaseAdminController
 {
     public function set($product_id)
     {
+        if (null !== $response = $this->checkAuth(array(AdminResources::MODULE), array('DeliveryDate'), AccessManager::UPDATE)) {
+            return $response;
+        }
+
         $errmes="";
 
         try {
