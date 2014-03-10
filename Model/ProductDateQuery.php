@@ -20,33 +20,23 @@ use Thelia\Model\ProductSaleElements;
 class ProductDateQuery extends BaseProductDateQuery
 {
     /**
-     * @param  ProductSaleElements    $sale_element
-     * @return array|ProductDate|null
-     */
-    public function getProductDate(ProductSaleElements $sale_element)
-    {
-        $ret = $this->findPk($sale_element->getId());
-
-        if ($ret->getId() === 0) {
-            $ret = new ProductDate();
-            $ret->setId($sale_element->getId());
-        }
-
-        return $ret;
-    }
-
-    /**
      * @param  Product $product
      * @return array
      */
     public function getProductDates(Product $product)
     {
-        $ret = array();
+        $ids = static::create()->select('id')->find();
+        $request_ids = array();
 
         foreach ($product->getProductSaleElementss() as $sale_element) {
-            $ret[]  = $this->getProductDate($sale_element);
+            if(!in_array($sale_element->getId(), $ids->getData())) {
+                $local = new ProductDate();
+                $local->setId($sale_element->getId())->save();
+            }
+            $request_ids[] = $sale_element->getId();
         }
 
+        $ret = $this->findPks($request_ids);
         return $ret;
     }
 

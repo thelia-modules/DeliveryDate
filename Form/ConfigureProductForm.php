@@ -59,7 +59,7 @@ class ConfigureProductForm extends BaseForm
     {
         $request = $this->getRequest();
 
-        $product_id = $request->query->get("product_id");
+        $product_id = $request->get("product_id");
         $product = ProductQuery::create()
             ->findPk($product_id);
 
