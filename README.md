@@ -1,18 +1,6 @@
- ___      ___  _      ____  __ __    ___  ____   __ __      ___     ____  ______    ___
-|   \    /  _]| |    |    ||  |  |  /  _]|    \ |  |  |    |   \   /    ||      |  /  _]
-|    \  /  [_ | |     |  | |  |  | /  [_ |  D  )|  |  |    |    \ |  o  ||      | /  [_
-|  D  ||    _]| |___  |  | |  |  ||    _]|    / |  ~  |    |  D  ||     ||_|  |_||    _]
-|     ||   [_ |     | |  | |  :  ||   [_ |    \ |___, |    |     ||  _  |  |  |  |   [_
-|     ||     ||     | |  |  \   / |     ||  .  \|     |    |     ||  |  |  |  |  |     |
-|_____||_____||_____||____|  \_/  |_____||__|\_||____/     |_____||__|__|  |__|  |_____|
-                                              ______         _____ _          _ _
-                                              | ___ \       |_   _| |        | (_)
-                                              | |_/ /_   _    | | | |__   ___| |_  __ _
-                                              | ___ \ | | |   | | | '_ \ / _ \ | |/ _` |
-                                              | |_/ / |_| |   | | | | | |  __/ | | (_| |
-                                              \____/ \__, |   \_/ |_| |_|\___|_|_|\__,_|
-                                                      __/ |
-                                                     |___/    <info@thelia.net>
+Delivery Date v1.0
+==================
+author: Thelia <info@thelia.net>
 
 Summary
 -------
@@ -20,12 +8,14 @@ Summary
 fr_FR:
 1.  Installation
 2.  Utilisation
-3.  Intégration
+3.  Boucle
+4.  Intégration
 
 en_US:
 1.  Install notes
 2.  How to use
-3.  Integration
+3.  Loop
+4.  Integration
 
 fr_FR
 -----
@@ -39,6 +29,20 @@ Rentrez vos temps de livraison et de réapprovisionnement par défault et clique
 
 Vous pouvez aussi préciser des valeurs spécifiques pour chaque déclinaison de produit.
 Pour cela allez sur la page d'édition du produit, onglet Modules.
+
+### Boucle
+
+1.  delivery.date
+    - Arguments:
+        1. productid | obligatoire | id de de la déclinaison de produit désirée (product_sale_element)
+    - Sorties:
+        1. \$DATE_MIN: date minimale formatée où le produit peut être reçu
+        2. \$DATE_MAX: date maximale formatée où le produit peut être reçu
+        3. \$QUANTITY: Quantité en stock du produit
+    - Utilisation:
+        ```{loop type="delivery.date" name="yourloopname"}
+            <!-- your template -->
+        {/loop}```
 
 ### Intégration
 Vous pouvez afficher les dates de livraison sur les pages de produit. Un exemple d'intégration est proposé pour le thème par default de Thelia,
@@ -56,7 +60,7 @@ quand une déclinaison de produit est selectionnée.
 La réponse est placée dans cette même balise.
 
 De plus, vous pouvez ajouter ces valeurs dans vos mails en utilisant la boucle delivery.date qui fourni trois valeurs:
-{$QUANTITY}, {$DATE_MIN} et {$DATE_MAX}.
+{\$QUANTITY}, {\$DATE_MIN} et {\$DATE_MAX}.
 Un exemple d'utilisation de cette boucle est présent dans <dossier du module>/templates/frontOffice/default/delivery-date.html
 
 en_US
@@ -70,6 +74,20 @@ First, activate the module in your Back-Office, tab Modulesn then click on Confi
 Enter your default delivery and restock time and click the Save button.
 
 You can also specify other values for each product, by going to your product's page in the back-office, tab Modules.
+
+### Loop
+
+1.  delivery.date
+    - Arguments:
+        1. productid | mandatory | id of the product sale element
+    - Output:
+        1. \$DATE_MIN: formated minimal date where the product may be received by the customer
+        2. \$DATE_MAX: formated maximal date where the product may be received by the customer
+        3. \$QUANTITY: stock quantity of the product
+    - Usage:
+        ```{loop type="delivery.date" name="yourloopname"}
+            <!-- your template -->
+        {/loop}```
 
 ### Integration
 You can show the delivery dates on the page of the product in your front Office. An integration example is available in this module.
@@ -85,5 +103,5 @@ In script.js, an ajax call is done on the address of the attribute data-href of 
 The response is placed in the tag.
 
 Moreover, you can add those values in your mails, using delivery.date loop that give three values:
-{$QUANTITY}, {$DATE_MIN} et {$DATE_MAX}.
+{\$QUANTITY}, {\$DATE_MIN} et {\$DATE_MAX}.
 A usage example of the loop is available in <path to the module>/templates/frontOffice/default/delivery-date.html
