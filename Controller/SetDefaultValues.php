@@ -25,6 +25,8 @@ namespace DeliveryDate\Controller;
 use DeliveryDate\Form\ConfigureForm;
 use DeliveryDate\Model\ProductDateQuery;
 use Thelia\Controller\Admin\BaseAdminController;
+use Thelia\Core\Security\Resource\AdminResources;
+use Thelia\Core\Security\AccessManager;
 
 /**
  * Class SetDefaultValues

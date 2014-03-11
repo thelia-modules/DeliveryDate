@@ -5,7 +5,6 @@ namespace DeliveryDate\Model;
 use DeliveryDate\Model\Base\ProductDateQuery as BaseProductDateQuery;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Thelia\Model\Product;
-use Thelia\Model\ProductSaleElements;
 
 /**
  * Skeleton subclass for performing query and update operations on the 'product_date' table.
@@ -29,7 +28,7 @@ class ProductDateQuery extends BaseProductDateQuery
         $request_ids = array();
 
         foreach ($product->getProductSaleElementss() as $sale_element) {
-            if(!in_array($sale_element->getId(), $ids->getData())) {
+            if (!in_array($sale_element->getId(), $ids->getData())) {
                 $local = new ProductDate();
                 $local->setId($sale_element->getId())->save();
             }
@@ -37,6 +36,7 @@ class ProductDateQuery extends BaseProductDateQuery
         }
 
         $ret = $this->findPks($request_ids);
+
         return $ret;
     }
 
